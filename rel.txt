@@ -1,0 +1,34 @@
+O Metasploit é o framework de exploração mais amplamente utilizado. O Metasploit é uma ferramenta poderosa que pode suportar todas as fases de um engajamento de teste de penetração, desde a coleta de informações até a pós-exploração.
+O Metasploit Framework é um conjunto de ferramentas que permite a coleta de informações, varredura, exploração, desenvolvimento de exploits, pós-exploração e muito mais. Embora o uso principal do Metasploit Framework se concentre no domínio de teste de penetração, ele também é útil para pesquisa de vulnerabilidade e desenvolvimento de exploração.
+Os principais componentes do Metasploit Framework podem ser resumidos da seguinte forma;
+
+msfconsole : A principal interface de linha de comando.
+Módulos : módulos de suporte, como exploits, scanners, payloads, etc.
+Ferramentas : ferramentas autônomas que ajudarão na pesquisa de vulnerabilidade, avaliação de vulnerabilidade ou teste de penetração. Algumas dessas ferramentas são msfvenom, pattern_create e pattern_offset
+
+Módulos
+Auxiliar: Qualquer módulo de suporte, como scanners, crawlers e fuzzers, pode ser encontrado aqui.
+Codificadores: os codificadores permitirão que você codifique a exploração e a carga útil na esperança de que uma solução antivírus baseada em assinatura possa perdê-los.
+Evasão: embora os codificadores codifiquem a carga útil, eles não devem ser considerados uma tentativa direta de burlar o software antivírus.
+Por outro lado, os módulos de “evasão” tentarão isso, com mais ou menos sucesso.
+Exploits: Exploits, bem organizados por sistema de destino.
+NOPs: NOPs (No OPeration) não fazem nada, literalmente.
+Eles são representados na família de CPUs Intel x86, eles são representados com 0x90, após o qual a CPU não fará nada por um ciclo. Eles são frequentemente usados ​​como um buffer para atingir tamanhos de carga consistentes.
+Payloads: Payloads são códigos que serão executados no sistema de destino.
+Você verá três diretórios diferentes em payloads: singles, stagers e stage.
+Singles: Cargas independentes (adicionar usuário, iniciar notepad.exe, etc.) que não precisam baixar um componente adicional para serem executados.
+Stagers: Responsáveis ​​por configurar um canal de conexão entre o Metasploit e o sistema alvo. Útil ao trabalhar com payloads preparados. “Staged payloads” primeiro carregará um stager no sistema de destino e, em seguida, baixará o restante da carga útil (stage). Isso oferece algumas vantagens, pois o tamanho inicial da carga útil será relativamente pequeno em comparação com a carga completa enviada de uma só vez.
+Estágios: baixado pelo stager. Isso permitirá que você use cargas úteis de tamanho maior.
+Pós: os módulos pós serão úteis no estágio final do processo de teste de penetração listado acima, pós-exploração.
+
+Para utilizar módulos é necessário que use o comando use
+O show comando pode ser usado em qualquer contexto seguido por um tipo de módulo (auxiliar, payload, exploit, etc.) para listar os módulos disponíveis.
+exemplo: use exploit/windows/smb/ms17_010_eternalblue
+Show optios imprimirá opções relacionadas ao exploit que escolhemos anteriormente. O comando terá saídas diferentes dependendo do contexto em que é usado.
+Mais informações sobre qualquer módulo podem ser obtidas digitando o comando indo
+Comando set serve para definir os parâmetros, entretanto será definido apenas uma vez, caso queira deixar padrão para outros m[odulos é necessário o comando setg. E caso queira limpar o valor use unsetg ou o unset
+Após tudo ser definido está na hora de rodar para isso tem o comando exploit ou run, que servem para a mesma coisa e que não precisam de parâmetro, mas pode ser usado o -z para deixar em segundo plano
+
+O sessions comando pode ser usado no prompt do msfconsole ou em qualquer contexto para ver as sessões existentes.
+Para interagir com qualquer sessão, você pode usar o sessions -i comando seguido do número da sessão desejada.
+Um dos comandos mais úteis no msfconsole é search. Este comando pesquisará o banco de dados do Metasploit Framework em busca de módulos relevantes para o parâmetro de pesquisa fornecido.
